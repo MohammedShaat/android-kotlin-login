@@ -41,14 +41,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { state ->
-            when (state) {
-                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-
-                }
-                else -> {
-                    val action = SettingsFragmentDirections.actionSettingsFragmentToLoginFragment()
-                    findNavController().navigate(action)
-                }
+            if (state == LoginViewModel.AuthenticationState.UNAUTHENTICATED) {
+                findNavController().navigate(R.id.loginFragment)
             }
         })
     }

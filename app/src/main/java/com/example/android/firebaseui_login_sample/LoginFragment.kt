@@ -67,13 +67,13 @@ class LoginFragment : Fragment() {
 
         navController = findNavController()
 
-        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { state ->
-            when (state) {
-                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                    val action = LoginFragmentDirections.actionLoginFragmentToSettingsFragment()
-                    navController.navigate(action)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navController.popBackStack(R.id.mainFragment, false)
+        }
 
-                }
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { state ->
+            if (state == LoginViewModel.AuthenticationState.AUTHENTICATED) {
+                navController.popBackStack()
             }
         })
     }

@@ -33,19 +33,10 @@
             android:id="@+id/settingsFragment"
             android:name="com.example.android.firebaseui_login_sample.SettingsFragment"
             android:label="fragment_settings">
-        <action
-            android:id="@+id/action_settingsFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
             android:id="@+id/loginFragment"
             android:name="com.example.android.firebaseui_login_sample.LoginFragment"
             android:label="fragment_login"
-            tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"
-            app:popUpTo="@id/mainFragment" />
-    </fragment>
+            tools:layout="@layout/fragment_login"/>
 </navigation>
