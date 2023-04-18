@@ -66,6 +66,16 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController()
+
+        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { state ->
+            when (state) {
+                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
+                    val action = LoginFragmentDirections.actionLoginFragmentToSettingsFragment()
+                    navController.navigate(action)
+
+                }
+            }
+        })
     }
 
     private fun launchSignInFlow() {
